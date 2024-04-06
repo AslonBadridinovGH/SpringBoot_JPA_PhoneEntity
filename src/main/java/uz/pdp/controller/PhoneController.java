@@ -1,5 +1,4 @@
 package uz.pdp.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.model.Phone;
@@ -13,11 +12,11 @@ import java.util.Optional;
 public class PhoneController {
 
     static List<Phone> phoneList;
+
     @Autowired
     PhoneRepository phoneRepository;
 
     @RequestMapping(value = "/phone", method = RequestMethod.GET)
-
     public List<Phone> gePhones() {
         phoneList = phoneRepository.findAll();
         return phoneList;
@@ -34,6 +33,7 @@ public class PhoneController {
         }
 
     }
+
     @RequestMapping(value = "/phone", method = RequestMethod.POST)
     public String addPhone(@RequestBody Phone phone) {
         boolean isThere = false;
@@ -44,7 +44,7 @@ public class PhoneController {
             }
         }
         if (isThere) {
-            return "Phone not saved,please enter another  MacAddress ";
+            return "Phone not saved, please enter another  MacAddress ";
         } else {
             phoneRepository.save(phone);
             return "phone added";
@@ -60,7 +60,7 @@ public class PhoneController {
                break;
            }
        }   if (isThere) {
-           return "Phone not edited,please enter another MacAddress ";
+           return "Phone not edited, please enter another MacAddress ";
 
        }   else {
            Optional<Phone> optionalPhone = phoneRepository.findById(id);
